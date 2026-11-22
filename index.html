@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1, user-scalable=no" />
+  <meta name="theme-color" content="#0a0e1a" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="FightList Pro+" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icon.svg" />
+  <link rel="icon" href="icon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>FightList Pro+</title>
+</head>
+<body>
+  <div id="app">
+    <header class="app-header">
+      <div class="brand">
+        <div class="logo">FL<span>+</span></div>
+        <div class="brand-text">
+          <h1>FightList Pro+</h1>
+          <p id="activeCompName">Taekwondo Manager</p>
+        </div>
+      </div>
+      <button id="compSwitchBtn" class="icon-btn" title="Cambiar competición">🏆</button>
+    </header>
+
+    <main id="main">
+      <!-- LISTA -->
+      <section id="view-list" class="view active">
+        <div class="view-header">
+          <h2>Lista de Combates</h2>
+          <button class="btn-primary" id="addFightBtn">+ Añadir</button>
+        </div>
+        <div class="toolbar">
+          <input type="search" id="searchInput" placeholder="🔍 Buscar deportista, categoría..." />
+          <select id="sortSelect">
+            <option value="number">Ordenar: Nº</option>
+            <option value="time">Hora</option>
+            <option value="mat">Tapiz</option>
+            <option value="athlete">Deportista</option>
+            <option value="category">Categoría</option>
+          </select>
+        </div>
+        <div class="toolbar">
+          <select id="filterMat"><option value="">Todos los tapices</option></select>
+          <select id="filterCat"><option value="">Todas las categorías</option></select>
+          <select id="filterState">
+            <option value="">Todos los estados</option>
+            <option value="pending">Pendiente</option>
+            <option value="ongoing">En curso</option>
+            <option value="done">Finalizado</option>
+            <option value="cancelled">Cancelado</option>
+          </select>
+        </div>
+        <div id="fightList" class="fight-list"></div>
+      </section>
+
+      <!-- HORARIOS -->
+      <section id="view-schedule" class="view">
+        <div class="view-header"><h2>Horarios</h2></div>
+        <div class="card">
+          <h3>Configuración</h3>
+          <div class="grid-2">
+            <label>Hora inicio <input type="time" id="schedStart" value="09:00" /></label>
+            <label>Duración (min) <input type="number" id="schedDuration" value="15" min="1" /></label>
+            <label>Pausa (min) <input type="number" id="schedBreak" value="5" min="0" /></label>
+            <label>Nº tapices <input type="number" id="schedMats" value="2" min="1" max="20" /></label>
+          </div>
+          <button class="btn-primary" id="calcScheduleBtn">⚡ Calcular horarios</button>
+        </div>
+        <div id="scheduleView" class="schedule-view"></div>
+      </section>
+
+      <!-- COMPETICIONES -->
+      <section id="view-comps" class="view">
+        <div class="view-header">
+          <h2>Competiciones</h2>
+          <button class="btn-primary" id="addCompBtn">+ Nueva</button>
+        </div>
+        <div id="compList" class="comp-list"></div>
+      </section>
+
+      <!-- RESUMEN -->
+      <section id="view-summary" class="view">
+        <div class="view-header"><h2>Resumen</h2></div>
+        <div id="summaryContent"></div>
+      </section>
+
+      <!-- AJUSTES -->
+      <section id="view-settings" class="view">
+        <div class="view-header"><h2>Ajustes</h2></div>
+        <div id="settingsContent"></div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav">
+      <button data-view="list" class="nav-btn active"><span>📋</span>Lista</button>
+      <button data-view="schedule" class="nav-btn"><span>⏰</span>Horarios</button>
+      <button data-view="comps" class="nav-btn"><span>🏆</span>Comps</button>
+      <button data-view="summary" class="nav-btn"><span>📊</span>Resumen</button>
+      <button data-view="settings" class="nav-btn"><span>⚙️</span>Ajustes</button>
+    </nav>
+  </div>
+
+  <!-- MODAL genérico -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-card">
+      <button class="modal-close" id="modalClose">✕</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="db.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
