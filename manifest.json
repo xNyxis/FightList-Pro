@@ -1,0 +1,13 @@
+{
+  "name": "FightList Pro+",
+  "short_name": "FightList+",
+  "description": "Gestión de competiciones de Taekwondo",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a0e1a",
+  "theme_color": "#0a0e1a",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
